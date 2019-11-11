@@ -47,38 +47,68 @@ db.Sequelize = Sequelize;
 // ASSOCIATIONS
 
 // userbase to valid
-db.userbase.hasOne(db.valid);
+db.userbase.hasOne(db.valid, {
+  as: 'userToValid',
+  foreignKey: 'ubid',
+  sourceKey: 'ubid'
+});
 db.valid.belongsTo(db.userbase, {
+  as: 'userToValid',
   foreignKey: 'ubid',
   targetKey: 'ubid'
 });
 // userbase to userRoles
-db.userbase.hasMany(db.userRoles);
+db.userbase.hasMany(db.userRoles, {
+  as: 'userToRoles',
+  foreignKey: 'ubid',
+  sourceKey: 'ubid'
+});
 db.userRoles.belongsTo(db.userbase, {
+  as: 'userToRoles',
   foreignKey: 'ubid',
   targetKey: 'ubid'
 });
 // userbase to settings
-db.userbase.hasOne(db.userSettings);
+db.userbase.hasOne(db.userSettings, {
+  as: 'userToSettings',
+  foreignKey: 'ubid',
+  sourceKey: 'ubid'
+});
 db.userSettings.belongsTo(db.userbase, {
+  as: 'userToSettings',
   foreignKey: 'ubid',
   targetKey: 'ubid'
 });
 // roleMaster to userRoles
-db.roleMaster.hasMany(db.userRoles);
+db.roleMaster.hasMany(db.userRoles, {
+  as: 'rolemaster to users',
+  foreignKey: 'roleid',
+  sourceKey: 'roleid'
+});
 db.userRoles.belongsTo(db.roleMaster, {
+  as: 'rolemaster to users',
   foreignKey: 'roleid',
   targetKey: 'roleid'
 });
-// roleMaster to roleDetails
-db.roleDetails.hasMany(db.roleMaster);
-db.roleMaster.belongsTo(db.roleDetails, {
+// roleDetails to roleMaster
+db.roleMaster.hasMany(db.roleDetails, {
+  as: 'rolemaster to roledetails',
+  foreignKey: 'roleid',
+  sourceKey: 'roleid'
+});
+db.roleDetails.belongsTo(db.roleMaster, {
+  as: 'rolemaster to roledetails',
   foreignKey: 'roleid',
   targetKey: 'roleid'
 });
 // actionMaster to roleDetails
-db.roleDetails.hasMany(db.actionMaster);
-db.actionMaster.belongsTo(db.roleDetails, {
+db.actionMaster.hasMany(db.roleDetails, {
+  as: 'actionmaster to roledetails',
+  foreignKey: 'actionid',
+  sourceKey: 'actionid'
+});
+db.roleDetails.belongsTo(db.actionMaster, {
+  as: 'actionmaster to roledetails',
   foreignKey: 'actionid',
   targetKey: 'actionid'
 });
