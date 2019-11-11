@@ -14,7 +14,7 @@ module.exports = (sequelize, Datatypes) => {
        * userSettings
        */
       ubid: {
-        type: Datatypes.BOOLEAN,
+        type: Datatypes.SMALLINT(3).UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
@@ -39,6 +39,7 @@ module.exports = (sequelize, Datatypes) => {
       },
       username: {
         type: Datatypes.STRING(20),
+        unique: true,
         required: true,
         allowNull: false,
         validate: {
@@ -56,10 +57,12 @@ module.exports = (sequelize, Datatypes) => {
       createdOn: {
         type: Datatypes.DATE,
         required: true,
+        allowNull: false,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
       },
       updatedOn: {
         type: Datatypes.DATE,
+        allowNull: false,
         required: true,
         defaultValue: sequelize.literal(
           'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'

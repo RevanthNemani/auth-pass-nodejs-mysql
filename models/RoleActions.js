@@ -6,14 +6,14 @@ module.exports = (sequelize, Datatypes) => {
     {
       // foreign key from roleMaster
       roleid: {
-        type: Datatypes.BOOLEAN,
+        type: Datatypes.SMALLINT(3).UNSIGNED,
         primaryKey: true,
         allowNull: false,
         validate: { min: 1, max: 255 }
       },
       // foreign key from actionMaster
       actionid: {
-        type: Datatypes.BOOLEAN,
+        type: Datatypes.SMALLINT(3).UNSIGNED,
         primaryKey: true,
         allowNull: false,
         validate: { min: 1, max: 255 }

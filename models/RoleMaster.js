@@ -6,7 +6,7 @@ module.exports = (sequelize, Datatypes) => {
     {
       // foreign key to userRoles
       roleid: {
-        type: Datatypes.BOOLEAN,
+        type: Datatypes.SMALLINT(3).UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
@@ -14,6 +14,8 @@ module.exports = (sequelize, Datatypes) => {
       },
       role: {
         type: Datatypes.STRING(20),
+        unique: true,
+        allowNull: false,
         validate: { isAlpha: true }
       }
     },

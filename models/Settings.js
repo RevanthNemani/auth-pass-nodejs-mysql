@@ -6,7 +6,7 @@ module.exports = (sequelize, Datatypes) => {
     {
       // foreign key from userbase
       ubid: {
-        type: Datatypes.BOOLEAN,
+        type: Datatypes.SMALLINT(3).UNSIGNED,
         autoIncrement: true,
         primaryKey: true,
         validate: { min: 1, max: 255 }
