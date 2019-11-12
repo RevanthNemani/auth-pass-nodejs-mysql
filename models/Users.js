@@ -53,25 +53,27 @@ module.exports = (sequelize, Datatypes) => {
         validate: {
           len: [6, 128]
         }
-      },
-      createdOn: {
-        type: Datatypes.DATE,
-        required: true,
-        allowNull: false,
-        defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
-      },
-      updatedOn: {
-        type: Datatypes.DATE,
-        allowNull: false,
-        required: true,
-        defaultValue: sequelize.literal(
-          'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
-        )
       }
+      /*,
+       * createdOn: {
+       *   type: Datatypes.DATE,
+       *   required: true,
+       *   allowNull: false,
+       *   defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
+       * },
+       * updatedOn: {
+       *   type: Datatypes.DATE,
+       *   allowNull: false,
+       *   required: true,
+       *   defaultValue: sequelize.literal(
+       *     'CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
+       *   )
+       * }
+       * */
     },
     {
       freezeTableName: true,
-      timestamps: false
+      timestamps: true
     }
   );
 };
